@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 using namespace std;
 //Node Class
 class Node
@@ -218,6 +219,7 @@ int main()
         else if(choice=='Q'||choice=='q')
         {
             cout<<endl<<"---------"<<endl<<"Good bye!"<<endl<<"---------"<<endl;
+            sleep(3);
             break;
             
         }
