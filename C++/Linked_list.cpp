@@ -77,21 +77,85 @@ void append(Node** head_ref, int new_data)
     last->next=new_node;
     return;
 }
+void sortedInsert(Node** head_ref, int new_data)
+{
+    Node* new_node=new Node();
+    new_node->data=new_data;
+
+    if(*head_ref==NULL||(*head_ref)->data>=new_node->data)
+    {
+        new_node->next=*head_ref;
+        *head_ref=new_node;
+        return;
+    }
+
+    Node* current = *head_ref;
+    while(current->next!=NULL && current->data<new_node->data)
+    {
+        current=current->next;
+    }
+
+    new_node->next=current->next;
+    current->next=new_node;
+
+}
+void deleteNode(Node** head_ref, int key)
+{
+    Node* temp= *head_ref;
+    Node* prev= NULL;
+
+    //If head node holds desired key, change the head and free the old head.
+    if(temp!=NULL&&temp->data==key)
+    {
+        *head_ref=temp->next;
+        delete temp;
+        return;
+    }
+    //search for the key to be deleted. Keep track of previous node as we need to change 'prev->next'
+    else{
+    while(temp!=NULL&&temp->data!=key)
+    {
+        prev=temp;
+        temp=temp->next;
+    }
+    //if key is not found
+    if(temp==NULL)
+    {
+        return;
+    }
+    prev->next=temp->next;
+    delete temp;
+}
+}
+void deleteList(Node**head_ref)
+{
+    Node* current=*head_ref;
+    Node* next= NULL;
+
+    while(current!=NULL)
+    {
+        next=current->next;
+        free(current);
+        current=next;
+    }
+    *head_ref=NULL;
+}
+
 int main()
 {
     //create a list with three nodes
     Node* head = NULL;
-    Node* second = NULL;
-    Node* third = NULL;
+    Node* sorted = NULL;
+   
 
     //allocate 3 nodes to the heap
     head = new Node();
-    second = new Node();
-    third = new Node();
+    sorted = new Node();
 
     //assign data to desired input
     //link node to next node
-    cout<<"Enter an integer to being the linked list: "<<endl;
+    cout<<endl<<"--Welcome to linked list thingy--"<<endl;
+    cout<<"Enter an integer to begin the linked list: "<<endl;
     int start;
     cin>>start;
 
@@ -104,12 +168,14 @@ int main()
 
     while (choice != 'Q'||choice !='Q')
     {
-        cout<<endl<<"--Welcome to linked list thingy--"<<endl;
         cout<<"--Please choose from the selections bellow--"<<endl;
         cout<<"Press P to print linked list"<<endl;
         cout<<"Press U to push an integer to front of list"<<endl;
         cout<<"Press A to append an integer to end of list"<<endl;
-        cout<<"Press Q to quit program"<<endl;
+        cout<<"Press S to sort insert an integer to the list"<<endl;
+        cout<<"Press D to delete an integer from the list"<<endl;
+        cout<<"Press L to delete the entire list"<<endl;
+        cout<<"Press Q to quit program"<<endl<<endl;
 
         cin>>choice;
 
@@ -131,9 +197,27 @@ int main()
             cin>>appendi;
             append(&head, appendi);
         }
+        else if(choice=='S'||choice=='s')
+        {
+            int sorti;
+            cout<<"Enter integer to sort insert: ";
+            cin>>sorti;
+            sortedInsert(&head,sorti);
+        }
+        else if (choice=='D'||choice =='d')
+        {
+            int deleti;
+            cout<<"Enter integer to delete: ";
+            cin>>deleti;
+            deleteNode(&head, deleti);
+        }
+        else if(choice=='L'||choice=='l')
+        {
+            deleteList(&head);
+        }
         else if(choice=='Q'||choice=='q')
         {
-            cout<<"Good bye!";
+            cout<<endl<<"---------"<<endl<<"Good bye!"<<endl<<"---------"<<endl;
             break;
             
         }
