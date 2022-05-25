@@ -218,7 +218,7 @@ int main()
         }
         else if(choice=='Q'||choice=='q')
         {
-            cout<<endl<<"---------"<<endl<<"Good bye!"<<endl<<"---------"<<endl;
+            cout<<endl<<"---------"<<endl<<"Good bye!!"<<endl<<"---------"<<endl;
             sleep(3);
             break;
             
