@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unistd.h>
+#include <stdlib.h>
 using namespace std;
 //Node Class
 class Node
@@ -176,9 +177,11 @@ int main()
         cout<<"Press S to sort insert an integer to the list"<<endl;
         cout<<"Press D to delete an integer from the list"<<endl;
         cout<<"Press L to delete the entire list"<<endl;
-        cout<<"Press Q to quit program"<<endl<<endl;
-
+        cout<<"Press Q to quit program"<<endl;
+        cout<<"--------------------------------------------"<<endl;
+        cout<<"Your choice: ";
         cin>>choice;
+        cout<<endl;
 
         if (choice == 'P'||choice =='p')
         {
@@ -222,6 +225,26 @@ int main()
             sleep(3);
             break;
             
+        }
+        else
+        {
+            int random;
+            srand(time(NULL));
+            random=rand()%10+1;
+     
+            if(random%2==0)
+            {
+                cout<<"Are you blind?!? Pick one of the options, dummy."<<endl<<endl;
+            }
+            else if(random==9||random==7)
+            {
+                cout<<"Should we do any eye exam instead?"<<endl<<endl;
+            }
+            else if(random==3||random==5||random==1)
+            {
+                cout<<"Your reading is getting a lot better. Try again >:("<<endl<<endl;
+            }
+
         }
     }
  
