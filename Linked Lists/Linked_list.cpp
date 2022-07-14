@@ -13,10 +13,20 @@ class Node
 void printList(Node* node)
 {
     cout<<endl;
+    int i=0;
     while (node != NULL)
     {
-        cout<<" "<<node->data;
-        node = node->next;
+        if(i==0)
+        {
+            cout<<node->data;
+            node = node->next;
+            i++;
+        }
+        else 
+        {
+            cout<<" "<<node->data;
+            node = node->next;
+        }
     }
     cout<<endl;
 }
