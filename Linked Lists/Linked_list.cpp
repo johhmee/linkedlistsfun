@@ -171,7 +171,6 @@ int main()
     while (choice != 'Q'||choice !='Q')
     {
         cout<<"--Please choose from the selections bellow--"<<endl;
-        cout<<"Press P to print linked list"<<endl;
         cout<<"Press U to push an integer to front of list"<<endl;
         cout<<"Press A to append an integer to end of list"<<endl;
         cout<<"Press S to sort insert an integer to the list"<<endl;
@@ -183,16 +182,14 @@ int main()
         cin>>choice;
         cout<<endl;
 
-        if (choice == 'P'||choice =='p')
-        {
-            printList(head);
-        }
-        else if(choice == 'U'||choice=='u')
+    
+        if(choice == 'U'||choice=='u')
         {
             int pushi;
             cout<<"Enter integer to push: ";
             cin>>pushi;
             push(&head,pushi);
+            printList(head);
         }
         else if(choice=='A'||choice=='a')
         {
@@ -200,6 +197,7 @@ int main()
             cout<<"Enter integer to append: ";
             cin>>appendi;
             append(&head, appendi);
+            printList(head);
         }
         else if(choice=='S'||choice=='s')
         {
@@ -207,6 +205,7 @@ int main()
             cout<<"Enter integer to sort insert: ";
             cin>>sorti;
             sortedInsert(&head,sorti);
+            printList(head);
         }
         else if (choice=='D'||choice =='d')
         {
@@ -214,10 +213,12 @@ int main()
             cout<<"Enter integer to delete: ";
             cin>>deleti;
             deleteNode(&head, deleti);
+            printList(head);
         }
         else if(choice=='L'||choice=='l')
         {
             deleteList(&head);
+            printList(head);
         }
         else if(choice=='Q'||choice=='q')
         {
